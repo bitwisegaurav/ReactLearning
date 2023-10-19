@@ -7,11 +7,11 @@ function App() {
   const [colorCount, setColorCount] = useState(0);
 
   function inc(){
-    if(count <= 20) setCount(count + 1);
+    if(count < 20) setCount(count + 1);
   }
 
   function dec(){
-    if(count > 0) setCount(count - 1);
+    setCount(count - 1);
   }
 
   function change(){
