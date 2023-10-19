@@ -7,7 +7,7 @@ function App() {
   const [colorCount, setColorCount] = useState(0);
 
   function inc(){
-    if(count <= 19) setCount(count + 1);
+    if(count <= 20) setCount(count + 1);
   }
 
   function dec(){
