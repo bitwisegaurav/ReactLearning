@@ -14,7 +14,7 @@ export default function About() {
     })
   return (
     <>
-    <h1 className='text-5xl mb-16 tracking-wider'>Github</h1>
+    <h1 className='text-5xl mt-5 mb-16 tracking-wider'>Github</h1>
     <div className='w-full flex items-center justify-around flex-wrap gap-10'>
         <div className="left h-60 rounded-lg overflow-hidden">
             <img src={data.avatar_url} alt="Image" className='h-full'/>

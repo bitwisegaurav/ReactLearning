@@ -1,6 +1,6 @@
 export default function Contact() {
   return (
-    <div className="isolate text-slate-200 px-6 py-2 lg:px-8 overflow-y-scroll w-5/6">
+    <div className="isolate text-slate-200 px-6 py-4 lg:px-8 overflow-y-scroll w-5/6">
   <div className="mx-auto max-w-2xl  text-center">
     <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Contact Us</h2>
   </div>

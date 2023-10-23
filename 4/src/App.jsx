@@ -29,7 +29,7 @@ function App() {
       <div className="flex justify-center py-4">
         <div className="grid w-5/6 rounded-lg p-5 text-gray-300 gap-6">
           <Header />
-          <div className="relative overflow-hidden flex flex-col justify-start items-center w-full bg-slate-800 rounded-lg p-5" style={{height: "calc(100vh - 16rem)"}}>
+          <div className="relative overflow-hidden flex flex-col justify-start items-center w-full bg-slate-800 rounded-lg" style={{height: "calc(100vh - 16rem)"}}>
           
             <Routes>
               <Route path="/" element={<Home />} />
