@@ -11,7 +11,7 @@ export default function About() {
     useEffect(() => {
         fetchData();
         // console.log(loaderData);
-    }, [])
+    })
   return (
     <>
     <h1 className='text-5xl mb-16 tracking-wider'>Github</h1>
