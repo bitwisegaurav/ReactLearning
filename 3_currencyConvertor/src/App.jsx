@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import InputBox from './InputBox'
-import './App.css'
-
 
 function App() {
   const [amount, setAmount] = useState(1);
