@@ -1,37 +1,28 @@
-import {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
-
-function fetchData(currency, setData){
-    fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${currency}.json`)
-    .then((res) => res.json())
-    .then(res => {
-      setData(res[currency]);
-    })
-}
-
 function InputBox(props) {
-  const [data, setData] = useState([]);
-  const [selectValue, setSelectValue] = useState(props.currency);
+    const from = props.from ?? false;
+    const values = props.values;
+    const keys = Object.keys(values.data);
 
-  useEffect(() => {
-    fetchData(props.currency, setData);
-  }, [props.currency]);
-
-  const keys = Object.keys(data);
   return (
     <div>
       <label htmlFor="something" className="text-gray-200">
-        {props.label}
+        {from ? "From" : "To"}
       </label>
       <select
         name="options"
         id="options"
-        className="float-right px-4 py-2 rounded-lg foucs:outline-none hover:cursor-pointer"
-        value={selectValue}
-        onChange={(e) => setSelectValue(e.target.value)}
-      >
+        value={from ? values.fromCurr : values.toCurr}
+        onChange={(e) => {
+            if(from) {
+            values.setFromCurr(e.target.value);
+          } else {
+            values.setToCurr(e.target.value);
+          }
+        }}
+        className="float-right px-2 py-1 rounded-lg foucs:outline-none hover:cursor-pointer">
         {keys.map((key) => {
-          return (
+            return (
             <option key={key} value={key}>
               {key}
             </option>
@@ -41,20 +32,35 @@ function InputBox(props) {
       <input
         type="number"
         id="something"
-        value={props.value}
-        onChange={(e) => props.setValue(Number(e.target.value))}
-        className="w-full px-5 py-3 mt-10 rounded-lg focus:outline-none"
-        min={0}
-      />
+        value={from ? (!isNaN(values.fromAmount) ? values.fromAmount : 1) : (!isNaN(values.toAmount) ? values.toAmount : 1)}
+        onChange={(e) => { 
+            const amount = parseFloat(e.target.value);
+            if(!isNaN(amount)) {
+                if(from) values.setFromAmount(amount);
+                else values.setToAmount(amount);
+            }
+        }}
+        className="w-full px-4 py-2 mt-4 rounded-lg focus:outline-none"
+        min={0}/>
     </div>
-  );
+  )
 }
 
 InputBox.propTypes = {
-  currency: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
-  setValue: PropTypes.func.isRequired,
-};
+    from: PropTypes.bool,
+    values: PropTypes.shape({
+        fromCurr: PropTypes.string,
+        toCurr: PropTypes.string,
+        fromAmount: PropTypes.number,
+        toAmount: PropTypes.number,
+        conversion: PropTypes.number,
+        data: PropTypes.object,
+        setConversion: PropTypes.func.isRequired,
+        setFromAmount: PropTypes.func.isRequired,
+        setToAmount: PropTypes.func.isRequired,
+        setFromCurr: PropTypes.func.isRequired,
+        setToCurr: PropTypes.func.isRequired
+    })
+}
 
-export default InputBox;
+export default InputBox
